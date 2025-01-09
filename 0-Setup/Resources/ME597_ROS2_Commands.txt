@@ -1,0 +1,159 @@
+Here's a more concise list of ROS 2 commands that you might find useful
+after going through the previous ROS 2 cheat sheet PDF.
+
+					    ros2 commands:
+
+ros2 action list
+
+----------------------------------------------Topics--------------------------------
+
+ros2 run <pgk_name> <node_name>
+ros2 topic list
+ros2 node list
+ros2 node list -t
+
+rqt
+rqt_graph
+
+ros2 node info <node_name>
+ros2 topic echo <topic_name>
+ros2 interface show <msg type or srv type>  (to see structure of data)
+
+
+----------------------------------------------Services--------------------------------
+
+ros2 service list
+ros2 service list -t
+ros2 service list|grep -v parameter
+
+rqt
+rqt_graph
+
+ros2 interface show <msg type or srv type>  (to see structure of data)
+ros2 service type <service_name>
+ros2 service call <service_name> <service_type> <arguments>  (manual service call)
+
+
+
+----------------------------------------------Parameters---------------------------------
+
+You can think of parameters as node settings. A node can store parameters as integers,
+floats, booleans, strings, and lists. In ROS 2, each node maintains its own parameters
+
+ros2 param list
+
+ros2 param get <node_name> <parameter_name>   (shows type and current value of a parameter)
+
+ros2 param set <node_name> <parameter_name> <value>
+ros2 param dump <node_name>   ( “dump” all of a node’s current parameter values into a file to save them for later)
+
+ros2 param load <node_name> <parameter_file>
+ros2 run <package_name> <executable_name> --ros-args --params-file <file_name>  (load parameter file on node startup)
+
+
+----------------------------------------------Actions---------------------------------
+
+ros2 node info <node name>
+
+ros2 action list
+ros2 action list -t  (Actions have types, similar to topics and services)
+ros2 action info /turtle1/rotate_absolute
+
+ros2 interface show turtlesim/action/RotateAbsolute   (to see structure of data: goal-result-feedback)
+
+ros2 action send_goal <action_name> <action_type> <values>
+ros2 action send_goal /turtle1/rotate_absolute turtlesim/action/RotateAbsolute "{theta: -1.57}" --feedback
+
+
+
+----------------------------------------------rqt_console---------------------------------
+
+a GUI tool used to introspect log messages in ROS 2.
+
+ros2 run rqt_console rqt_console
+
+
+
+----------------------------------------------ros2 launch---------------------------------
+
+ros2 launch <package_name> <launch_file_name>
+ros2 launch turtlesim multisim.launch.py
+
+
+----------------------------------------------ros2 bag---------------------------------
+
+make a new directory to store our saved recordings, just as good practice
+mkdir bag_files
+cd bag_files
+
+ros2 bag record -o <optional_filename> <topic_name_1> <topic_name_2>
+ros2 bag info <bag_file_name>
+
+ros2 bag play <bag_file_name>
+
+
+----------------------------------------------creating a ws---------------------------------
+
+mkdir ~/dev_ws/src/
+cd ~/dev_ws/src/
+git clone ...
+cd ~/dev_ws/
+rosdep install -i --from-path src --rosdistro galactic -y   (resolve dependencies, execute from root dir)
+colcon build (equivalent to catkin_make)
+(next step is to source the overlay)
+	source /opt/ros/galactic/setup.bash
+	cd ~/dev_ws
+	. install/local_setup.bash
+	OR
+	source dev_ws/install/setup.bash
+
+
+
+Folder hierarchy:
+
+workspace_folder/
+    build/
+    install/
+    log/
+    src/
+      package_1/
+          CMakeLists.txt
+          package.xml
+
+      package_2/
+          setup.py
+          package.xml
+          resource/package_2
+      ...
+      package_n/
+          CMakeLists.txt
+          package.xml
+
+
+----------------------------------------------creating a pkg---------------------------------
+
+to create a new pkg:
+ros2 pkg create --build-type ament_cmake <pkg_name>
+	OR
+ros2 pkg create --build-type ament_python <pkg_name>
+
+Eg:
+ros2 pkg create --build-type ament_python --node-name my_node my_package
+
+colcon build --packages-select my_package
+source install/local_setup.bash
+
+
+----------------------------------------------package.xml---------------------------------
+
+tag names ending with _depend: this is where your package.xml would list its dependencies on other packages, for colcon to search for
+
+if you edit package.xml, make sure to edit setup.py to match package.xml exactly
+
+
+ROSCON:
+https://roscon.ros.org/2016/presentations/ROSCon%202016%20-%20ROS%202%20Update.pdf
+https://docs.ros.org/en/galactic/Concepts/About-ROS-Interfaces.html
+
+colcon:
+https://colcon.readthedocs.io/en/released/user/configuration.html

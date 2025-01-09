@@ -1,0 +1,192 @@
+Here are a list of basic linux commands that you will run in the linux terminal to perform certain actions.
+
+All comments within <> must be replaced by the user's option
+The $ sign represents that the following command must be entered in a new line.
+Do not copy the $ sign, into the linux terminal, except for the environment variable name.
+
+---------------------------------------------------------------------------------------
+
+			                        Terminal commands
+
+$echo $<variable name> tells me what data the environment variable is holding
+
+source will execute the commands from the bash file as if it were being entered from the terminal
+
+~ is the same as home folder of the user
+
+$ls -la
+            lists all folders and files, hiddden or not
+			(hidden file/folder names start with a dot)
+
+$cd <directory name>
+            changes the working directory from current working directory
+            to the directory name you have specified
+
+$cd ..
+            changes the current working directory to one level higher
+
+Writing into a text file using Vim:
+	If creating new- $touch my_file.txt
+	To go into editor mode- press the "i" key
+	To go into cmd mode- press the "Esc" key
+	To save- ":wq"   (w-write, q-quit)
+	To force quit- ":q!"
+
+$mv <file/folder we want to move> <destination>
+$cp <file we want to copy> <name of the new file>
+$cp -r <folder we want to copy> <name of the new folder>
+$rm <file to remove>
+$rm -r <folder to remove>
+
+----------------------------------------------------------------------------------------
+
+			                    Directory permissions
+
+r - read contents of a file
+w - write/modify file or directory
+x - execute a file or view contents of a directory
+
+User groups(in sets of 3):  <owner><group><all users>
+
+Command to modify permissions of a file/directory: chmod
+	   to make a file executable by all users: $chmod +x <file_name>
+
+*Syntax:
+-> Through tags
+chmod  <groups to assign the permissions><permissions to assign/remove> <file/folder names>
+u - owner
+g - group
+o - others
+a - all users (can also be left blank)
+
+-> Thru binary representation
+r = 4
+w = 2
+x = 1
+chmod <_ _ _> <file/folder name>
+r+w = 6
+r+x = 5
+r+w+x = 7
+example: $chmod 755 move_bb8_square.py
+   this gives all permissions to owner, r+x to group and r+x for all users
+
+----------------------------------------------------------------------------------------
+
+			                        Bash files
+
+files start with:
+#!/bin/bash
+
+files are executed like this:
+./<file_name.sh>
+
+*Passing arguments to bash files:
+$1 is 1st arg
+$2 is 2nd arg
+$3 is 3rd arg
+  Syntax: ./<file_name>.sh <arg>
+	  ./control.sh circle
+
+.bashrc is a special bash file that is automatically executed whenever
+ a new shell is opened
+$source .bashrc command will force execute the bashrc file
+
+
+----------------------------------------------------------------------------------------
+
+			                    Environment variables
+
+Env variable is a dynamic-named value that can affect the way running processes will behave on a computer
+
+Env variables are set when a new shell session is opened
+
+export <var_name>: will help you to force update the changes made to the env var
+
+running the export command alone will show list of all env variables with their values
+export | grep <string> will help you filter the env var list
+example: export | grep ROS filters all env variables with the characters ROS
+
+
+----------------------------------------------------------------------------------------
+
+			                        Linux Processes
+
+Foreground processes- user started
+Background processes- don't expect user inputs
+
+*To view list to running processes:
+htop
+ps faux
+
+Example: ps faux | grep test_process
+
+*Killing a process:
+Ctrl + C
+	Kills a process with the signal SIGINT and can be intercepted by a prgm (py script)
+Ctrl + Z
+	Suspends a process with the signal SIGSTOP, which cannot be intercepted by a prgm
+	Effectively making a Foreground process into a Background one
+kill <PID>
+	Stops a process that is running in the bckgrnd
+	You can get PID from ps faux
+bg
+	Helps you move a suspended prgm sent to the bckgrnd back to the frgrnd
+	Execute this after running kill <PID> so that the kill signal is received by prgm
+
+to start a process in the bckgrnd, follow cmd by &
+	example: rosrun move_bb8_pkg test_process &
+	You can't use Ctrl+C or Ctrl+Z to kill it
+	You must open a new shell and kill it using kill <PID>
+
+----------------------------------------------------------------------------------------
+
+			                        SSH Protocol
+
+Secure Shell Protocol, to control a remote machine from a local machine
+For it to work, both local and remote machine must have a SSH server running
+
+Syntax: $ssh <user>@<host IP address> -p <port number>
+Example:$ssh student@127.0.0.1 -p 8090
+
+To logout: $exit
+This will close the session
+
+----------------------------------------------------------------------------------------
+
+			                        Sudo and apt
+
+$sudo : give you temp root user power
+$apt-get : lets you interact w/ the cmd line packaging system
+
+----------------------------------------------------------------------------------------
+
+		                       Miscellaneous information
+
+Q. what does setting environment variables mean?
+A. env var = a variable that holds data of all the interactions an
+   application made/ will make with its env, stores location of
+   dependancies, etc
+
+Q. what do you mean by a terminal's environment?
+A. list of all the current env variables
+
+->Common env variables:
+	$HOME : indicates home directory
+	$PATH : indicated the search path for commands
+
+Q. what does sourcing your workspace mean?
+A. it means setting the correct env variables for the tasks
+   we are about to do
+
+.*sh files = bash files
+
+
+Q. What is a build system?
+A. Converts source code to targets- libraries, executable programs, anything
+   else that is not static code
+
+In ROS 2, source code is organised into packages, where each package typically
+consists of one or more targets when built. colcon- is the build tool of ROS 2; it
+converts source code into executables
+
+source code -> package -> stack
