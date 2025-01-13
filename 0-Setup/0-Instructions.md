@@ -24,8 +24,8 @@ It is important to note that the lectures will focus primarily on the theoretica
 2. Verify that you can complete a test upload into Gradescope. We will create a test assignment in
    which you will have to load a simple text file compressed in *.zip format.
 3. Answer the pre-course survey available on Brightspace. The pre-course survey is only graded for completion.
-4. Complete the [OS installation guide](1-OS_installation_guide.md)
-5. Complete the [ROS 2 installation guide](2-ROS_2_installation_guide.md)
+4. Complete the [OS installation guide](1-OS_Installation_Guide.md)
+5. Complete the [ROS 2 installation guide](2-ROS2_Installation_Guide.md)
 
 ### Deliverables
 1. Complete the Pre-Course Survey.
