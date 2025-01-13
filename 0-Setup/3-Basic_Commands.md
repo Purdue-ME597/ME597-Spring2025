@@ -4,7 +4,7 @@ Below are 2 lists of basic ROS 2 and linux commands to be used throughout the co
 Keep these commands handy, over time you must gradually memorize them.
 
 ### Basic linux commands:
-* Here's the [link](Resources/ME597_linux_commands.txt) to the list of basic linux commands
+* Here's the [link](Resources/ME597_Linux_Commands.txt) to the list of basic linux commands
 
 ### Basic ROS 2 commands:
 * Here's the [link](Resources/ROS2-Command-Cheat-Sheets-updated.pdf) to the list of basic ROS 2 commands. You'll probably have to download this PDF to view it.
