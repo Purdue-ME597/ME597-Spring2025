@@ -1,8 +1,9 @@
+
 In the previous guide, we had installed just the OS- Ubuntu 22.04. In this guide, we will install ROS 2 Humble, inside Ubuntu 22.04. Think of it as installing Windows 10 first, then installing Python.
 
 Later on, we will also see just like how Python has many packages, so does ROS2. For example- Gazebo, Turtlebot4, std_msgs, etc.
 
-**NOTE**: Docker container and Virtual Machine users, skip this guide as it comes preinstalled with ROS 2 Humble and Gazebo
+**NOTE**: Docker container and Virtual Machine users, skip this guide as it comes preinstalled with ROS 2 Humble and Gazebo. Users of the Linux Computers in DUDL 3109 will also skip this guide as all necessary packages are pre-installed.
 
 # ROS 2 Humble Hawksbill installation guide:
 1. Open a terminal using `Ctrl+Alt+T`
@@ -18,7 +19,7 @@ Later on, we will also see just like how Python has many packages, so does ROS2.
     * $`sudo apt install python3-rosdep2`
     * $`sudo apt install python3-pip`
 
-Once you're done setting up Ubuntu 22.04 and ROS 2 Humble, read [this](Resources/Software_pkg_%26_OS.md) to understand what we have just done till now. 
+Once you're done setting up Ubuntu 22.04 and ROS 2 Humble, read [this](Resources/Software_Pkg_and_OS.md) to understand what we have done up to this point. 
 
 # Simulation Installation guide
 Now we will install the simulation. For this course we will use a simulation of the Turtlebot3. There is a Turtlebot4 simulator available with Gazebo Ignition Fortress simulation software, but it has higher graphics requirements, so we will be using Gazebo Classic 11.10 simulation software, with Turtlebot3 models. Functionally, they will be the same: sensors, topics, etc.
@@ -40,12 +41,12 @@ Now we will install the simulation. For this course we will use a simulation of 
 
 
 ### Turtlebot3 model installation:
-You can find the simulation workspace here: [sim_ws](https://github.com/naslab-projects/sim_ws)
+You can find the simulation workspace here: [sim_ws](https://github.com/Purdue-ME597/sim_ws)
 
 1. Simply save this workspace e.g., 
     ```
     cd ~/ros2 # cd into the dir you want to keep this workspace in
-    git clone https://github.com/naslab-projects/sim_ws.git
+    git clone https://github.com/Purdue-ME597/sim_ws
     ```
 
 2. In a new terminal build the sim_ws workspace: 
@@ -76,7 +77,7 @@ You can find the simulation workspace here: [sim_ws](https://github.com/naslab-p
     ```
 
 ### Using the simulation for lab assignments:
-You will be using this simulation package in future tasks: Lab2, Lab3, Lab4, and Final Project. These will each have their own workspace. How can we use the simulator package, which belongs in its own workspace, in a different workspace? Learn what this means, and how, [on this page](../1-ROS_2_Basics/4-ROS_2_workspaces.md).
+You will be using this simulation package in future tasks: Lab2, Lab3, Lab4, and Final Project. These will each have their own workspace. How can we use the simulator package, which belongs in its own workspace, in a different workspace? Learn what this means, and how, [on this page](../1-ROS_2_Basics/4-ROS_2_workspaces.md). (Available once Lab 1 is released)
 
 
-You're now ready to learn and play with ROS 2! Wohoo!
+You're now ready to learn and play with ROS 2! 

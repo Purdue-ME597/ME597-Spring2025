@@ -1,7 +1,140 @@
 # OS Installation Guide 
 The Operating Systems (OS) that support ROS2 are Linux and Windows. Although Windows is supported, certain features are broken. Hence, it is advised that ROS 2 run on Linux machine.
 
+Linux has different versions or distributions (distros), the most popular being Ubuntu. Ubuntu in-turn has different d# OS Installation Guide 
+The Operating Systems (OS) that support ROS2 are Linux and Windows. Although Windows is supported, certain features are broken. Hence, it is advised that ROS 2 run on Linux machine.
+
 Linux has different versions or distributions (distros), the most popular being Ubuntu. Ubuntu in-turn has different distros, like Ubuntu 18.04, Ubuntu 20.4, Ubuntu 22.04. Analogous to Windows 8, Windows 10, Windows 11. 
+
+Just like Ubuntu, ROS 2 has its own ditros too- ROS 2 Foxy, ROS 2 Galactic, ROS 2 Humble. [source](https://docs.ros.org/en/humble/Releases.html)
+
+For the entirety of this course, we will be using **Ubuntu 22.04** and **ROS 2 Humble**.
+
+# Important Disclaimer Regarding Computer Resources
+Please attempt to install Ubuntu and ROS2 on your personal computer using the steps below as it will be highly beneficial to have access to these systems on your own time throughout the semester. If you are having issues please post them to the class Piazza. If you have a MAC computer or an older system that cannot support the methods listed below, the computers in the lab are available to you during the designated lab times only. If you are using a lab computer, the below steps are not necessary.
+
+### Options to install Ubuntu 22.04:
+#### Option 1: Use Ubuntu through a Virtual Machine (VM) (the easiest option):
+  * VMWare (Better Performance VM) 
+    1. Follow the instructions at the bottom of the page to install VMWare and Ubuntu 22.04 image.
+  * VirtualBox (Alternative VM - Available on lab computers)
+    1. Follow the instructions at the bottom of the page to install VirtualBox and Ubuntu 22.04 image.
+    
+#### Option 2: Install Ubuntu Natively (harder to setup, but will give best performance):
+  * Dual boot- Windows and Ubuntu: [source](https://help.ubuntu.com/community/WindowsDualBoot)
+  * Upgrade existing Ubuntu version [source](https://ubuntu.com/tutorials/upgrading-ubuntu-desktop#1-before-you-start)
+
+#### Option 3: Install WSL and Visual Studio code on Windows machine:
+  * Install Ubuntu 22.04 using Powershell or Windows Store
+  * Install Visual Studio Code with WSL extension.
+
+#### Option 4: Using Ubuntu 22.04 via docker container, for macOS users or any OS users (Advanced):
+  * Install docker:
+    * Install docker for macOS. [link](https://docs.docker.com/desktop/install/mac-install/)
+    * Install docker for ubuntu. [link](https://docs.docker.com/engine/install/ubuntu/)
+
+### Install VMWare
+VMWare Workstation Pro (personal use) is the best free Virtual Machine available:
+1. Read 'Using a Virtual Machine'
+2. Begin downloading the ME597 Ubuntu 22.04 image here: [Link](https://purdue0-my.sharepoint.com/:f:/g/personal/bergman9_purdue_edu/Em6RvmPqnJVJkFtfomJFiWMBApOg5o9bXQoma4h_oVpdkQ?e=Ul0Y2K)
+3. Go to VMWare (broadcom) website [Link](https://support.broadcom.com/group/ecx/downloads)
+4. Create an account and enter your information.
+5. In the "My Downloads" tab, click "VMware Workstation Pro", then "VMware Workstation Pro xx.x for Personal Use (Windows)" and select a release version.
+6. There will be a blue cloud download icon on the right side of the page. Click this to first verify your information for personal use and then you may use it to download the software.
+7. Go through the VMWare Workstation Pro installation Wizard. Set aside at least 30GB of storage for this.
+8. Import the .ova file: `File` --> `Open` --> Find .ova
+9. Select the location to store your virtual machine.
+10. The virtual machine password is `2024`
+
+### Install VirtualBox
+1. Read 'Using a Virtual Machine'
+2. Begin downloading the ME597 Ubuntu 22.04 image here: [Link](https://purdue0-my.sharepoint.com/:f:/g/personal/bergman9_purdue_edu/Em6RvmPqnJVJkFtfomJFiWMBApOg5o9bXQoma4h_oVpdkQ?e=Ul0Y2K)
+3. (Pre-installed in POTR176 and ME2038) Download VirtualBox from the following [link](https://www.virtualbox.org/wiki/Downloads) and install it.
+4. Click `File` --> `Import Appliance...` --> Find .ova
+5. Change `Machine Base Folder` (C:\temp for POTR176 and ME2038)
+6. Click `Finish` and click the VM to begin importing it
+7. Change VM settings. The optimal settings will vary by machine.
+      1. `System` --> Set your Base Memory, Processors
+      2. `Display` --> Disable 3D acceleration, Graphics Controller: VMSVGA  
+8. The virtual machine password is `2024`
+
+### Using a Virtual Machine
+1. If you use a virtual machine, you must back up your work every single session. Virtual machines can potentially corrupt, such as if you do not shut them down properly. Shared lab computers are prone to data loss. You are responsible for backing up your work frequently.
+
+2. You must have ~31GB of free space minimum on your computer for the VM image (.ova) (~13GB) and the VM virtual disk (.vmdk)(17GB). Once you finish these steps, you may delete the .ova. As you continue to work on the VM, the .vmdk file will grow in size.
+
+3. To close out of the virtual machine, make sure to shutdown properly. For VirtualBox, this is "Send Shutdown Signal". For VMware, this is "Shut Down Guest".
+
+### Using the Lab Linux Computers
+1. DUDL 3109 Users: 
+    1. To boot into the Linux computer, there is a 2-way toggle switch located underneath the computer station on the right side. This will toggle between the Windows and Linux desktops.
+    2. We highly recommend turning your ROS2 workspaces into GitHub Repositories for version history and control. This will enable to you back up your work to the cloud where you could access it from your personal computer and still be able to edit your code outside of lab.
+
+### Using WSL2 on Windows 11
+1. Download WSL2 with Ubuntu 22.04
+    1. Option 1: Powershell ([official guide link](https://learn.microsoft.com/en-us/windows/wsl/install))
+        1. Open Windows Powershell as Administrator by right clicking on Powershell and clicking on ```Run as administrator```.
+        2. Inside Powershell run 
+            ```powershell
+            wsl --install -d Ubuntu-22.04
+            ```
+    2. Option 2: Microsoft Store
+       1. Open Microsoft Store
+       2. Search for Ubuntu 22.04 
+       3. Install Ubuntu 22.04.3 LTS
+2. Optional: Configure WSL environment ([Configuring WSL](https://learn.microsoft.com/en-us/windows/wsl/wsl-config#wslconf))
+    1. Navigate to the ```\etc``` directory in WSL.
+    2. Open/create a file called ```wsl.conf```
+        ```bash
+        nano wsl.conf
+        ```
+    2. Copy these settings into the wsl.conf file
+        ```bash
+        [boot]
+        systemd=true
+
+        #Add resource limits to WSL2. Configure this based on how many resources you would like WSL2 to have access to on your machine. Make sure these values don't exceed or match your hardware limitations.  
+        [wsl2]
+        memory=4GB
+        processors=2
+
+        # Network host settings that enable the DNS server used by WSL 2. This example changes the hostname, sets generateHosts to false, preventing WSL from the default behavior of auto-generating /etc/hosts, and sets generateResolvConf to false, preventing WSL from auto-generating /etc/resolv.conf, so that you can create your own (ie. nameserver 1.1.1.1).
+        [network]
+        generateHosts = true
+        generateResolvConf =true
+
+        # Set whether WSL supports interop processes like launching Windows apps and adding path variables. Setting these to false will block the launch of Windows processes and block adding $PATH environment variables.
+        [interop]
+        enabled = false
+        appendWindowsPath = false
+        ```
+    3. Go to Windows Powershell and shutdown WSL2 (wait for at least a minute)
+        ```powershell
+        wsl --shutdown
+        ```
+
+    4. Restart WSL2 
+        ```powershell
+        wsl -d <dsitro_name>
+        ```
+        Note: if you don't remember what the name of the linux distribution, or distro, use the following command to show the a list of the WSL distributions that are installed.
+          ```powershell
+          wsl --list
+          ```
+
+3. Install Visual Studio Code (VS Code)
+    1. Download VS Code here: https://code.visualstudio.com/Download 
+    2. Go through installation process. 
+    2. Once installation is complete, open VS Code, go to "Manage,"  the gear icon at the bottom left-hand side, and click on it. Look for "Extensions" in the drop-down and click it. You can also use macro ```Ctrl + Shift + X```.
+    3. Type in **```WSL```** in the search bar and install the WSL extension from Microsoft. This allows the Windows instance of VS Code to interact with the WSL so you can work without solely relying on command line. 
+4. Opening Folders from WSL2 in Visual Studio Code
+    1. Navigate to ```File``` -> ```Open Folder...```. A drop down navigation bar should appear. Copy the path to your workspace into this bar and hit "Ok".
+        1. If you don't know the full path to the workspace type the linux command ``pwd`` in the workspace directory and it will give you the full path. 
+    2. If a drop down does not appear and Windows File Explorer opens instead type in the follwing to the navigation bar
+        ```
+        \\wsl.localhost\<distro_name>\home\<user-name>
+        ```
+        You can now navigate the WSL instance directory through File Explorer.istros, like Ubuntu 18.04, Ubuntu 20.4, Ubuntu 22.04. Analogous to Windows 8, Windows 10, Windows 11. 
 
 Just like Ubuntu, ROS 2 has its own ditros too- ROS 2 Foxy, ROS 2 Galactic, ROS 2 Humble. [source](https://docs.ros.org/en/humble/Releases.html)
 
