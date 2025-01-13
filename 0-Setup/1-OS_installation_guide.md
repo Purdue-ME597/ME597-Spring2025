@@ -6,7 +6,7 @@ The Operating Systems (OS) that support ROS2 are Linux and Windows. Although Win
 
 Linux has different versions or distributions (distros), the most popular being Ubuntu. Ubuntu in-turn has different distros, like Ubuntu 18.04, Ubuntu 20.4, Ubuntu 22.04. Analogous to Windows 8, Windows 10, Windows 11. 
 
-Just like Ubuntu, ROS 2 has its own ditros too- ROS 2 Foxy, ROS 2 Galactic, ROS 2 Humble. [source](https://docs.ros.org/en/humble/Releases.html)
+Just like Ubuntu, ROS 2 has its own distros too- ROS 2 Foxy, ROS 2 Galactic, ROS 2 Humble. [source](https://docs.ros.org/en/humble/Releases.html)
 
 For the entirety of this course, we will be using **Ubuntu 22.04** and **ROS 2 Humble**.
 
