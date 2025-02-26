@@ -40,7 +40,7 @@ This week, you will begin by generating a map using SLAM and implementing an A* 
 #### Part A: Mapping (Hardware) (1 hr) (Partnered)
 * `task_4`- Generating map data
 
-NOTE: The robot used in this class has a namespace of `/robot`, so when you are launching a file, remember to include the namespace argument, e.g. `ros2 launch task_4 gen_sync_map.launch.py namespace:=/robot`
+NOTE: The robot used in this class has a namespace of `/robot`, so when you are launching a file, remember to include the namespace argument, e.g. `ros2 launch task_4 gen_sync_map_launch.py namespace:=/robot`
 
 Using [this](https://turtlebot.github.io/turtlebot4-user-manual/tutorials/generate_map.html) as reference:
 1. Create a ROS 2 `ament_python` package called `task_4`, with two sub-folders: `maps` and `launch`.
@@ -115,6 +115,10 @@ Please give this node the alias `auto_navigator.py` in your `setup.py` file to s
 
 Compared to other nodes, `auto_navigator.py` is predicted to have a relatively high number of lines of code. We recommend breaking your logic into subfunctions and following good coding styles.
 
+**Bonus Points**
+1. We will give you a long path to test your robot, we will assign bonus points to those who are able to increase the performance of your A* algorithm computation speed. Cutoffs for points will be given based on time and these exact cutoffs will be given in lab during week 4.
+2. There are various methods you can do to improve the A* performance, one way is to replace the queue handling with implementing the heapq library in python.
+
 After completing this node, 
 
 2. Follow the instructions [here](https://github.com/naslab-projects/sim_ws.git) to use the simulation environment. Note the specific launch instructions in the `src/turtlebot3_gazebo` subdirectory.
@@ -142,16 +146,22 @@ the following in your `setup.py` under data_files.
           
     1. Launch the `localization.launch.py` file (which belongs to `turtlebot4_navigation` pkg).
         * This is for localization.
-        * You must also pass the relative path for the `map` parameter, which should be `src/task_4/maps/classroom_map.yaml`.
-        * For debugging purposes, you can try launching this file on its own with: `ros2 launch turtlebot4_navigation localization.launch.py map:=classroom_map.yaml`
+        * You must also pass the relative path for the `map` launch argument, which should be `src/task_4/maps/classroom_map.yaml`. You may also pass the absolute path to your map.
+        * You must also pass `/robot` for the `namespace` launch argument.
+        * For debugging purposes, you can try launching this file on its own with: `ros2 launch turtlebot4_navigation localization.launch.py map:=classroom_map.yaml namespace:='/robot`
+   
     
     2. Launch the `view_robot.launch.py` file (which belongs to `task_4` pkg).
         * This allows you to view the map in Rviz2.
+        * You should pass the map path as well for the `map` launch argument.
+        * You should pass `/robot` for the `namespace` launch argument.
     
     3. Run the `auto_navigator` node (which belongs to `task_4` pkg).
         * This starts your path planning and path following algorithm for the TurtleBot4.
+        * You will need to add `/robot` to the following topics: `/cmd_vel`,`/amcl_pose`
     4. [Optional] If you are struggling to get your launch file to work please use this instead: 
-        - [`turtlebot4_navigator.launch.py`](/3-Navigation/Resources/turtlebot4_navigator.launch.py) (can be found in `3-Navigation/Resources`)  
+        - [`turtlebot4_navigator.launch.py`](/3-Navigation/Resources/turtlebot4_navigator.launch.py) (can be found in `3-Navigation/Resources`)
+
 2. Complete the relevant tag details in the `package.xml` file.
 
 3.  Build and run the ROS 2 node you built.
@@ -161,9 +171,10 @@ the following in your `setup.py` under data_files.
         * $`ros2 topic list`
         * $`ros2 node info <node_name>`
         * $`ros2 topic echo <topic_name>`
-4. Once the robot can navigate successfully, record a video of the robot navigating. You will upload this to Gradescope later.
+4.  To get your hardware working, set the robot down in the map. Launch the file to start the amcl and Rviz. Set your initial pose to match your physical robot position. You may notice the lidar scan does not match up perfectly with the walls of the map, in this case adjust your iniital pose in Rviz or move the physical robot slightly until they align (this does not need to be perfect but should be close). At this point, you can set your goal position in Rviz and watch your little robot go!
+5. Once the robot can navigate successfully, record a video of the robot navigating. You will upload this to Gradescope later.
 
-Note: it is assumed the path is free of obstacles. However, if your robot keeps colliding into the walls, you might need to increment the safe margin with respect to the walls or improve your map accuracy.
+Note: it is assumed the path is free of obstacles. However, if your robot keeps colliding into the walls, you might need to increment the safe margin with respect to the walls or improve your map accuracy. This map is challenging and will require a delicate balance of map inflation, robot speed, and initial pose estimate accuracy to traverse the space.
 
 ### Deliverables
 Source code
@@ -183,7 +194,8 @@ ros2 log files
 * Upload `<ws_ros2>/log/` too
 
 Video footage
-* Recording of your robot performing autonomous simulation when you are running it on the physical robot
+* Recording of your robot autonomously navigating the simulation space. Please include the set up you do in RVIZ as part of the video.
+* Recording of your robot autonomously navigating the physical space. Please include the set up you do in RVIZ as part of the video.
 
 Your folder structure should be as such:
 
@@ -215,3 +227,4 @@ Deviating from the names provided in the lab sheet will result in penalties.
 * 20 pts: Week 6, Part C, completed and commented `*.ipynb` NB
 * 05 pts: Week 6 `ros2 bag` files
 * 15 pts: Weeks 7/8, Physical Turtlebot Video recording
+* 20 pts bonus: Improved calculation time of A* algorithm.
