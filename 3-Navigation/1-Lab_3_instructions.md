@@ -118,6 +118,12 @@ Compared to other nodes, `auto_navigator.py` is predicted to have a relatively h
 **Bonus Points**
 1. We will give you a long path to test your robot, we will assign bonus points to those who are able to increase the performance of your A* algorithm computation speed. Cutoffs for points will be given based on time and these exact cutoffs will be given in lab during week 4.
 2. There are various methods you can do to improve the A* performance, one way is to replace the queue handling with implementing the heapq library in python.
+   * 50-90 seconds = 5 points
+   * 20-50 seconds = 10 points
+   * 5 - 20 seconds = 15 points
+   * < 5 seconds = 20 points
+   * >90 seconds = 0 points
+This is measured for calculating the path from the robot spawn to the back of the room in the top right corner in RVIZ.
 
 After completing this node, 
 
