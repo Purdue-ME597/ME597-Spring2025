@@ -73,7 +73,9 @@ class Navigation(Node):
         path.poses.append(start_pose)
         path.poses.append(end_pose)
         # Do not edit below (required for autograder)
-        self.calc_time_pub.publish(self.get_clock().now().nanoseconds*1e-9-self.start_time)
+        self.astarTime = Float32()
+        self.astarTime.data = float(self.get_clock().now().nanoseconds*1e-9-self.start_time)
+        self.calc_time_pub.publish(self.astarTime)
         
         return path
 

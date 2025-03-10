@@ -20,11 +20,11 @@ def generate_launch_description():
     view_robot_path = os.path.join(view_robot_dir,'launch','view_robot.launch.py')
     map_path = os.path.join(view_robot_dir, 'maps', 'classroom_map.yaml')
 
-    # Launch SLAM with map
-    slam_launch = IncludeLaunchDescription(PythonLaunchDescriptionSource(slam_launch_path),launch_arguments={'map': map_path}.items())
+    # Launch SLAM with map and /robot namespace
+    slam_launch = IncludeLaunchDescription(PythonLaunchDescriptionSource(slam_launch_path),launch_arguments={'map': map_path,'namespace':'/robot'}.items())
     
-    # Launch RViz with map
-    view_robot_launch = IncludeLaunchDescription(PythonLaunchDescriptionSource(view_robot_path),launch_arguments={'map': map_path}.items())
+    # Launch RViz with map and /robot namespace
+    view_robot_launch = IncludeLaunchDescription(PythonLaunchDescriptionSource(view_robot_path),launch_arguments={'map': map_path,'namespace':'/robot'}.items())
     
     return LaunchDescription([
         slam_launch,
@@ -32,7 +32,6 @@ def generate_launch_description():
         Node(
             package='task_4',
             executable='auto_navigator',
-            namespace='/robot',
             output="screen"
         )
     ])
