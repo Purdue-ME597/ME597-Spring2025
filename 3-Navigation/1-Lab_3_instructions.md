@@ -229,7 +229,7 @@ Deviating from the names provided in the lab sheet will result in penalties.
 * 45 pts: `task_4` pkg
 * 05 pts: Week 5, Part A, map files
 * 10 pts: Autonomous Navigation Simulation Video
-* 20 pts: Week 6, Part C, completed and commented `*.ipynb` NB
+* 25 pts: Week 6, Part C, completed and commented `*.ipynb` NB
 * 05 pts: Week 6 `ros2 bag` files
-* 15 pts: Weeks 7/8, Physical Turtlebot Video recording
+* 10 pts: Weeks 7/8, Physical Turtlebot Video recording
 * 20 pts bonus: Improved calculation time of A* algorithm.
