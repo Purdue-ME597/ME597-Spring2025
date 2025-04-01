@@ -117,6 +117,8 @@ If you have completed all the tasks until here, you have done an amazing job! Pa
 Video of Track Red Ball
 * Demonstrate all 4 behavior requirements.
 * Include 'extra_credit.txt' in zip file.
+Video of Bounding Box Behavior in Task 5
+* Screen record or high quality cell phone video of the video playing with bounding box overlayed.
 
 Source code
 * Two ROS 2 packages:
@@ -132,11 +134,11 @@ Your folder structure should be as such:
 
 ```
 XX
-|
+|__task_5_video
 |__task_5
 |     |__launch
 |     |__...
-|     
+|__task_6_video     
 |__task_6
 |     |__launch
 |     |__...
