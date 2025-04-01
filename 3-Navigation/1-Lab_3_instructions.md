@@ -125,7 +125,7 @@ Compared to other nodes, `auto_navigator.py` is predicted to have a relatively h
    * < 5 seconds = 20 points
    * >90 seconds = 0 points
 After completing this node, 
-
+**Testing your code (assignmen check off points)**
 2. Follow the instructions [here](https://github.com/naslab-projects/sim_ws.git) to use the simulation environment. Note the specific launch instructions in the `src/turtlebot3_gazebo` subdirectory.
 3. Launch the `navigator.launch.py` file (which belongs to `turtlebot3_gazebo` pkg). 
 3. Test the `auto_navigator.py` by pick a [target pose in RVIz](https://turtlebot.github.io/turtlebot4-user-manual/tutorials/navigation.html). Ensure it generates a path to the goal and navigates towards it.
@@ -169,7 +169,7 @@ the following in your `setup.py` under data_files.
 
 2. Complete the relevant tag details in the `package.xml` file.
 
-3.  Build and run the ROS 2 node you built.
+3.  Build and run the ROS 2 launch file you built (or the provided launch file from the Resources folder).
     * Observe the robot's path through the environment.
     * Also verify with these commands:
         * $`ros2 node list`
@@ -229,7 +229,7 @@ Deviating from the names provided in the lab sheet will result in penalties.
 * 45 pts: `task_4` pkg
 * 05 pts: Week 5, Part A, map files
 * 10 pts: Autonomous Navigation Simulation Video
-* 20 pts: Week 6, Part C, completed and commented `*.ipynb` NB
+* 25 pts: Week 6, Part C, completed and commented `*.ipynb` NB
 * 05 pts: Week 6 `ros2 bag` files
-* 15 pts: Weeks 7/8, Physical Turtlebot Video recording
+* 10 pts: Weeks 7/8, Physical Turtlebot Video recording
 * 20 pts bonus: Improved calculation time of A* algorithm.
