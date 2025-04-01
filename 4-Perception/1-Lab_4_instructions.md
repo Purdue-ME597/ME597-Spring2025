@@ -134,11 +134,11 @@ Your folder structure should be as such:
 
 ```
 XX
-|__task_5_video
+|
 |__task_5
 |     |__launch
 |     |__...
-|__task_6_video     
+|     
 |__task_6
 |     |__launch
 |     |__...
